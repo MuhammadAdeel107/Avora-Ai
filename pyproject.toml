@@ -1,0 +1,21 @@
+[project]
+name = "avora"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "gradio>=6.28.0",
+    "livekit-agents>=1.6.9",
+    "livekit-plugins-ai-coustics~=0.2",
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+    "python-dotenv>=1.2.3",
+]
+
+[project.scripts]
+avora = "avora:main"
+
+[build-system]
+requires = ["uv_build>=0.12.13,<0.13.0"]
+build-backend = "uv_build"
