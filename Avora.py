@@ -4,32 +4,17 @@ from livekit import agents
 from livekit.agents import AgentServer, AgentSession, Agent, inference, room_io, TurnHandlingOptions
 from livekit.plugins import ai_coustics
 
-load_dotenv(".env.")
+load_dotenv(".env")
 
-
-# System Prompts
-VOICE_INSTRUCTIONS = """You are a helpful voice AI assistant.
-You eagerly assist users with their questions by providing information from your extensive knowledge.
-Your responses are concise, to the point, and without any complex formatting or punctuation including emojis, asterisks, or other symbols.
-You are curious, friendly, and have a sense of humor."""
-
-CHAT_INSTRUCTIONS = """You are Avora, a professional and highly capable AI assistant.
-Your goal is to be helpful, precise, and insightful.
-You use clean Markdown formatting to make your responses easy to read.
-You maintain a professional yet friendly tone, similar to Claude.
-When providing code, use proper language blocks.
-When listing items, use clear bullet points.
-Your responses should be comprehensive but avoid unnecessary fluff."""
-
-# Shared Model Config
-MODEL_ID = "google/gemma-4-31b-it"
 
 class Assistant(Agent):
-    def __init__(self, instructions=VOICE_INSTRUCTIONS) -> None:
+    def __init__(self) -> None:
         super().__init__(
-            instructions=instructions,
+            instructions="""You are a helpful voice AI assistant.
+            You eagerly assist users with their questions by providing information from your extensive knowledge.
+            Your responses are concise, to the point, and without any complex formatting or punctuation including emojis, asterisks, or other symbols.
+            You are curious, friendly, and have a sense of humor.""",
         )
-
 
 server = AgentServer()
 
@@ -37,7 +22,7 @@ server = AgentServer()
 async def my_agent(ctx: agents.JobContext):
     session = AgentSession(
         stt=inference.STT(model="deepgram/nova-3", language="multi"),
-        llm=inference.LLM(model=MODEL_ID),
+        llm=inference.LLM(model="google/gemma-4-31b-it"),
         tts=inference.TTS(
             model="inworld/inworld-tts-2",
             voice="Ashley",
