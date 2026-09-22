@@ -25,3 +25,23 @@ The application relies on the following core components and service providers de
    ```bash
    git clone [https://github.com/MuhammadAdeel107/Avora-Ai.git](https://github.com/MuhammadAdeel107/Avora-Ai.git)
    cd Avora-Ai
+Step 2: Establish Virtual Environment
+Create and activate your Python virtual environment by running:
+
+Bash
+python -m venv venv
+venv\Scripts\activate
+Step 3: Install Required Packages
+Install the necessary dependencies using pip:
+
+Bash
+pip install livekit livekit-agents python-dotenv
+Step 4: Configure Environment Variables
+Create a new file named .env in the root directory of your project.
+
+Add your LiveKit and Deepgram API credentials inside the .env
+Execution
+Initialize the agent worker by running your application script:
+
+Bash
+python Avora.py dev
